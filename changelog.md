@@ -14,3 +14,4 @@ All the versions and the changes they bring
 - combined free memory and memory
 - combined free swap and swap
 - instead of the swap and memory being measured in kB I did math and scaled it up to MB
+- better time
