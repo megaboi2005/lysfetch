@@ -72,6 +72,7 @@ local asciiArt = {
 	"  ${1}#####${3}#######${1}#####${3}  "
 }
 
+
 -- Handy functions that the standard lacks
 function string.replace(p_string, p_char, p_newChar)
 	if p_string:match(p_char) then
@@ -373,15 +374,18 @@ if terminfo:sub(#terminfo - 5, #terminfo) == "8color" then
 end
 
 -- Main lysfetch output
+
+
 print(colorReset .. indentation .. title)
 print(AsciiArt() .. ("-"):rep(#title))
 print(AsciiArt() .. Label("OS: ")           .. GetFileInfoAt("/etc/os-release", 3, "=", 2))
 print(AsciiArt() .. Label("Kernel: ")       .. GetFileInfoAt("/proc/sys/kernel/osrelease"))
 print(AsciiArt() .. Label("CPU: ")          .. GetFileInfoAt("/proc/cpuinfo", 5, ":", 2))
-print(AsciiArt() .. Label("Total memory: ") .. GetFileInfoAt("/proc/meminfo", 1, " ", 2) .. "kB")
-print(AsciiArt() .. Label("Free memory: ")  .. GetFileInfoAt("/proc/meminfo", 2, " ", 2) .. "kB")
-print(AsciiArt() .. Label("Total swap: ")   .. GetFileInfoAt("/proc/meminfo", 15, " ", 2) .. "kB")
-print(AsciiArt() .. Label("Free swap: ")    .. GetFileInfoAt("/proc/meminfo", 16, " ", 2) .. "kB")
+print(AsciiArt() .. Label("Total memory: ") .. math.floor(GetFileInfoAt("/proc/meminfo", 1, " ", 2)/1024 + 0.5) .. "mB")
+
+print(AsciiArt() .. Label("Free memory: ")  .. math.floor(GetFileInfoAt("/proc/meminfo", 2, " ", 2)/1024 + 0.5) .. "mB")
+print(AsciiArt() .. Label("Total swap: ")   .. math.floor(GetFileInfoAt("/proc/meminfo", 15, " ", 2)/1024 + 0.5) .. "mB")
+print(AsciiArt() .. Label("Free swap: ")    .. math.floor(GetFileInfoAt("/proc/meminfo", 16, " ", 2)/1024 + 0.5) .. "mB")
 print(AsciiArt() .. Label("Uptime: ")       .. GetFileInfoAt("/proc/uptime", nil, ".", 1) .. "s")
 print(AsciiArt() .. Label("Shell: ")        .. GetEnvVariable("SHELL"))
 print(AsciiArt() .. Label("Hostname: ")     .. GetFileInfoAt("/etc/hostname"))
