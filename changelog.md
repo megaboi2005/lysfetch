@@ -11,5 +11,6 @@ All the versions and the changes they bring
 
 ## What I have done
 - free memory properly shows now
-- combined memory and swap
+- combined free memory and memory
+- combined free swap and swap
 - instead of the swap and memory being measured in kB I did math and scaled it up to MB
