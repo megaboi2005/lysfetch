@@ -378,8 +378,8 @@ end
 
 print(colorReset .. indentation .. title)
 print(AsciiArt() .. ("-"):rep(#title))
-print(AsciiArt() .. Label("OS: ")           .. GetFileInfoAt("/etc/os-release", 3, "=", 2))
-print(AsciiArt() .. Label("Kernel: ")       .. GetFileInfoAt("/proc/sys/kernel/osrelease"))
+print(AsciiArt() .. Label("OS: ")           .. GetFileInfoAt("/etc/os-release", 1, "=", 2))
+print(AsciiArt() .. Label("Kernel: ")       .. GetFileInfoAt("/proc/sys/kernel/version"))
 print(AsciiArt() .. Label("CPU: ")          .. GetFileInfoAt("/proc/cpuinfo", 5, ":", 2))
 print(AsciiArt() .. Label("Total memory: ") .. math.floor(GetFileInfoAt("/proc/meminfo", 3, " ", 2)/1024 + 0.5) .. "MB" .. "/" .. math.floor(GetFileInfoAt("/proc/meminfo", 1, " ", 2)/1024 + 0.5) .. "MB")
 print(AsciiArt() .. Label("Total swap: ")   .. math.floor(GetFileInfoAt("/proc/meminfo", 16, " ", 2)/1024 + 0.5) .. "MB".. "/".. math.floor(GetFileInfoAt("/proc/meminfo", 15, " ", 2)/1024 + 0.5) .. "MB")
