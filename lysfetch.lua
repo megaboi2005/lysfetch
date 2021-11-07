@@ -382,14 +382,13 @@ print(AsciiArt() .. Label("OS: ")           .. GetFileInfoAt("/etc/os-release", 
 print(AsciiArt() .. Label("Kernel: ")       .. GetFileInfoAt("/proc/sys/kernel/osrelease"))
 print(AsciiArt() .. Label("CPU: ")          .. GetFileInfoAt("/proc/cpuinfo", 5, ":", 2))
 print(AsciiArt() .. Label("Total memory: ") .. math.floor(GetFileInfoAt("/proc/meminfo", 3, " ", 2)/1024 + 0.5) .. "MB" .. "/" .. math.floor(GetFileInfoAt("/proc/meminfo", 1, " ", 2)/1024 + 0.5) .. "MB")
-
-
 print(AsciiArt() .. Label("Total swap: ")   .. math.floor(GetFileInfoAt("/proc/meminfo", 16, " ", 2)/1024 + 0.5) .. "MB".. "/".. math.floor(GetFileInfoAt("/proc/meminfo", 15, " ", 2)/1024 + 0.5) .. "MB")
-
-print(AsciiArt() .. Label("Uptime: ")       .. GetFileInfoAt("/proc/uptime", nil, ".", 1) .. "s")
+uptime = GetFileInfoAt("/proc/uptime", nil, ".", 1)
+hours = math.floor(uptime/3600*60/60)
+minutes = math.floor(uptime/3600*60) - hours*60
+print(AsciiArt() .. Label("Uptime: ")       .. hours .. " hours " .. minutes .. " minutes ")
 print(AsciiArt() .. Label("Shell: ")        .. GetEnvVariable("SHELL"))
-print(AsciiArt() .. Label("Hostname: ")     .. GetFileInfoAt("/etc/hostname"))
-print(AsciiArt() .. Label("User: ")         .. GetEnvVariable("USER"))
+
 
 -- Draw rest of the ascii art
 while counter < #asciiArt do
